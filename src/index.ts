@@ -3,38 +3,38 @@ import {
   ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
-  ValidatorConstraintInterface
-} from 'class-validator'
-import { getRepository, Not, Repository } from 'typeorm'
+  ValidatorConstraintInterface,
+} from 'class-validator';
+import { getRepository, Not, Repository } from 'typeorm';
 
 @ValidatorConstraint({ async: true, name: 'IsUniq' })
 export class IsUniqConstraint implements ValidatorConstraintInterface {
   public async validate(value: any, args: ValidationArguments) {
-    const repo = getRepository(args.targetName)
+    const repository = getRepository(args.targetName);
 
-    const entity = await repo.findOne({
-      where: this.buildConditions(value, args, repo)
-    })
+    const entity = await repository.findOne({
+      where: this.buildConditions(value, args, repository),
+    });
 
-    return !entity
+    return !entity;
   }
 
   private buildConditions(
     value: any,
     args: ValidationArguments,
-    repo: Repository<{}>
+    repository: Repository<{}>,
   ) {
-    const primaryColumnNames = repo.metadata.primaryColumns.map(
-      ({ propertyName }) => propertyName
-    )
-    let conditions = { [args.property]: value }
+    const primaryColumnNames = repository.metadata.primaryColumns.map(
+      ({ propertyName }) => propertyName,
+    );
+    let conditions = { [args.property]: value };
     if (primaryColumnNames.length) {
       conditions = primaryColumnNames.reduce((acc, name) => {
-        const pkValue = (args.object as any)[name]
-        return pkValue ? { acc, [name]: Not(pkValue) } : acc
-      }, conditions)
+        const pkValue = (args.object as any)[name];
+        return pkValue ? { acc, [name]: Not(pkValue) } : acc;
+      }, conditions);
     }
-    return conditions
+    return conditions;
   }
 }
 
@@ -42,14 +42,14 @@ export const IsUniq = (validationOptions?: ValidationOptions) => {
   return (object: object, propertyName: string) => {
     const opts: ValidationOptions = {
       message: '$target with $value already exists',
-      ...validationOptions
-    }
+      ...validationOptions,
+    };
     registerDecorator({
       target: object.constructor,
       propertyName,
       options: opts,
       constraints: [],
-      validator: IsUniqConstraint
-    })
-  }
-}
+      validator: IsUniqConstraint,
+    });
+  };
+};
