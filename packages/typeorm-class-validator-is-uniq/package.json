@@ -8,6 +8,9 @@
     "lint": "tslint -p .",
     "prepublish": "tsc"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/join-com/typeorm-class-validators"

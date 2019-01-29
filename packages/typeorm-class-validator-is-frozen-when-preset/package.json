@@ -8,28 +8,15 @@
     "lint": "tslint -p .",
     "prepublish": "tsc"
   },
-  "lint-staged": {
-    "*.{ts,md}": [
-      "yarn prettier --write",
-      "git add"
-    ],
-    "src/**/*.ts": [
-      "npm run lint --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc --noEmit && lint-staged"
-    }
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/join-com/typeorm-class-validators"
   },
   "keywords": [
-    "uniq",
-    "is uniq",
+    "preset",
     "class-validator",
     "typeorm"
   ],
@@ -52,5 +39,6 @@
   "dependencies": {
     "class-validator": "^0.9.1",
     "typeorm": "^0.2.9"
-  }
+  },
+  "gitHead": "7607d18ec1d23222bf8c19dbcb7e860f352affa4"
 }
