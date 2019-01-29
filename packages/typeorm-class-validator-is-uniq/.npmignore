@@ -1,0 +1,7 @@
+src
+.prettierrc
+tsconfig.json
+tslint.json
+.node-version
+__tests__
+testdb
