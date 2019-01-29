@@ -1,6 +1,6 @@
 {
   "name": "@join-com/typeorm-class-validator-is-frozen-when-preset",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "validator for typeorm and class-validator to check that value is never reassigned",
   "main": "lib/index.js",
   "scripts": {
