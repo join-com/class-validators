@@ -3,5 +3,5 @@ src
 tsconfig.json
 tslint.json
 .node-version
-__tests__
 testdb
+__tests__
