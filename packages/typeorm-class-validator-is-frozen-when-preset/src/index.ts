@@ -3,31 +3,35 @@ import {
   ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
-  ValidatorConstraintInterface
-} from 'class-validator'
-import { getRepository } from 'typeorm'
+  ValidatorConstraintInterface,
+} from 'class-validator';
+import { getRepository } from 'typeorm';
 
 interface IObject {
-  [key: string]: any
+  [key: string]: any;
 }
 
 @ValidatorConstraint({ async: true, name: 'IsFrozenWhenPreset' })
-export class IsFrozenWhenPresetConstraint implements ValidatorConstraintInterface {
+export class IsFrozenWhenPresetConstraint
+  implements ValidatorConstraintInterface {
   public async validate(value: any, args: ValidationArguments) {
-    const { targetName, property } = args
+    const object: IObject = args.object;
+    if (!object.id) {
+      return true;
+    }
 
-    const repository = getRepository(targetName)
-    const object: IObject = args.object
-    const entity: IObject | undefined = await repository.findOne(object.id)
+    const { targetName, property } = args;
+    const repository = getRepository(targetName);
+    const entity: IObject | undefined = await repository.findOne(object.id);
 
-    return !entity || !entity[property] || entity[property] === value
+    return !entity || !entity[property] || entity[property] === value;
   }
 }
 
 export const IsFrozenWhenPreset = () => {
   const options: ValidationOptions = {
-    message: 'Value is not allowed to be changed'
-  }
+    message: 'Value is not allowed to be changed',
+  };
 
   return (object: object, propertyName: string) => {
     registerDecorator({
@@ -35,7 +39,7 @@ export const IsFrozenWhenPreset = () => {
       propertyName,
       options,
       constraints: [],
-      validator: IsFrozenWhenPresetConstraint
-    })
-  }
-}
+      validator: IsFrozenWhenPresetConstraint,
+    });
+  };
+};
