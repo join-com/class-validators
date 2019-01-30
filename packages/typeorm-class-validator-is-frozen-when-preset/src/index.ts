@@ -20,7 +20,7 @@ export class IsFrozenWhenPresetConstraint
       return true;
     }
 
-    const { property, targetName } = args;
+    const { targetName, property } = args;
     const repository = getRepository(targetName);
     const entity: IObject | undefined = await repository.findOne(object.id);
 
