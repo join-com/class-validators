@@ -1,0 +1,44 @@
+{
+  "name": "@join-com/typeorm-class-validator-is-frozen-when-preset",
+  "version": "1.1.4",
+  "description": "validator for typeorm and class-validator to check that value is never reassigned",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "tslint -p .",
+    "prepublish": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/join-com/typeorm-class-validators"
+  },
+  "keywords": [
+    "preset",
+    "class-validator",
+    "typeorm"
+  ],
+  "author": "JOIN team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/join-com/typeorm-class-validators/issues"
+  },
+  "homepage": "https://github.com/join-com/typeorm-class-validators#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.12",
+    "jest": "^23.6.0",
+    "jest-extended": "^0.11.0",
+    "jest-watch-typeahead": "^0.2.0",
+    "sqlite3": "^4.0.4",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.1"
+  },
+  "dependencies": {
+    "class-validator": "^0.9.1",
+    "typeorm": "^0.2.9"
+  },
+  "gitHead": "7607d18ec1d23222bf8c19dbcb7e860f352affa4"
+}
