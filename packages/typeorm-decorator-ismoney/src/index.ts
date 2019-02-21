@@ -1,6 +1,5 @@
 import {
   registerDecorator,
-  ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
@@ -10,14 +9,12 @@ import codes from './codes';
 
 @ValidatorConstraint()
 export class IsMoneyValidator implements ValidatorConstraintInterface {
-  public validate(money: any, args?: ValidationArguments) {
+  public validate(money: any) {
     const { amount, currency } = money;
     const isAmountCorrect =
       typeof amount === 'number' && amount >= 0 && amount <= 999999999;
     const isCurrencyCorrect =
-      typeof currency === 'string' &&
-      codes.includes(currency) &&
-      (args && args.constraints[0] ? currency === args.constraints[0] : true);
+      typeof currency === 'string' && codes.includes(currency);
     return isAmountCorrect && isCurrencyCorrect;
   }
 }
