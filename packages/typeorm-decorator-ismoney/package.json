@@ -19,7 +19,7 @@
     "money"
   ],
   "author": "JOIN team",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/join-com/typeorm-class-validators/issues"
   },
