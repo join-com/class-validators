@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IsMoney validation Decorator rejects invalid class 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoneyValidator": "",
+    },
+    "property": "price",
+    "target": GuineaPig {
+      "price": Object {
+        "amount": "Enough",
+        "currency": "Gold",
+      },
+    },
+    "value": Object {
+      "amount": "Enough",
+      "currency": "Gold",
+    },
+  },
+]
+`;
