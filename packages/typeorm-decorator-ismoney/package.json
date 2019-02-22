@@ -1,6 +1,6 @@
 {
-  "name": "typeorm-decorator-ismoney",
-  "version": "1.2.0",
+  "name": "@join-com/typeorm-decorator-ismoney",
+  "version": "1.2.1",
   "description": "@IsMoney decorator for class-validator used with typeorm",
   "main": "lib/index.js",
   "scripts": {
