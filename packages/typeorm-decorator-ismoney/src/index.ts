@@ -48,10 +48,7 @@ export class IsMoneyValidator implements ValidatorConstraintInterface {
   }
 
   public defaultMessage(args: ValidationArguments) {
-    // here you can provide default error message if validation failed
-    return `Provided object (${JSON.stringify(
-      args.value,
-    )}) is too a valid Money object`;
+    return `(${JSON.stringify(args.value)}) is not a valid Money object`;
   }
 }
 
