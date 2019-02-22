@@ -13,7 +13,7 @@ const settingsDefault = {
   allowNegative: false,
   min: Number.MIN_SAFE_INTEGER,
   max: Number.MAX_SAFE_INTEGER,
-  currencies: null,
+  currencies: undefined,
 };
 
 interface IMoneyValidationOptions {
