@@ -1,19 +1,21 @@
 {
-  "name": "@join-com/typeorm-decorator-ismoney",
-  "version": "1.2.3",
-  "description": "@IsMoney decorator for class-validator used with typeorm",
+  "name": "@join-com/class-validator-ismoney",
+  "version": "1.2.0",
+  "description": "@IsMoney decorator for class-validator",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "lint": "tslint -p .",
     "prepublish": "tsc"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/join-com/typeorm-class-validators.git"
   },
   "keywords": [
-    "typeorm",
     "is money",
     "class-validator",
     "money"
