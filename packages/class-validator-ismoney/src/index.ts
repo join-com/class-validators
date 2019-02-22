@@ -26,6 +26,9 @@ interface IMoneyValidationOptions {
 @ValidatorConstraint({ name: 'IsMoney', async: false })
 export class IsMoneyValidator implements ValidatorConstraintInterface {
   public validate(money: IMoney, args: ValidationArguments) {
+    if (!money) {
+      return false;
+    }
     const { amount, currency } = money;
     const {
       allowNegative,

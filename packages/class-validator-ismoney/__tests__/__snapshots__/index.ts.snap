@@ -66,6 +66,22 @@ Array [
 ]
 `;
 
+exports[`IsMoney validation rejects correclty on undefined value 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "(undefined) is not a valid Money object",
+    },
+    "property": "price",
+    "target": GuineaPig {
+      "price": undefined,
+    },
+    "value": undefined,
+  },
+]
+`;
+
 exports[`IsMoney validation rejects currency which is not in the custom list 1`] = `
 Array [
   ValidationError {

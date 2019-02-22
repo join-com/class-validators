@@ -118,4 +118,11 @@ describe('IsMoney validation', () => {
     const errors = await validate(defaultPiggy);
     expect(errors).toMatchSnapshot();
   });
+
+  it('rejects correclty on undefined value', async () => {
+    const littlePiggy = new GuineaPig();
+    littlePiggy.price = undefined;
+    const errors = await validate(littlePiggy);
+    expect(errors).toMatchSnapshot();
+  });
 });
