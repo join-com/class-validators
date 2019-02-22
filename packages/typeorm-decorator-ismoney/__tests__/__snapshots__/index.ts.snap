@@ -5,7 +5,7 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "IsMoney": "Provided object ({\\"amount\\":2400,\\"currency\\":\\"EUR\\"}) is too a valid Money object",
+      "IsMoney": "({\\"amount\\":2400,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
     },
     "property": "price",
     "target": GuineaPig {
@@ -27,7 +27,7 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "IsMoney": "Provided object ({\\"amount\\":-2000,\\"currency\\":\\"USD\\"}) is too a valid Money object",
+      "IsMoney": "({\\"amount\\":-2000,\\"currency\\":\\"USD\\"}) is not a valid Money object",
     },
     "property": "price",
     "target": CustomGuineaPig {
@@ -49,7 +49,7 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "IsMoney": "Provided object ({\\"amount\\":100,\\"currency\\":\\"BYN\\"}) is too a valid Money object",
+      "IsMoney": "({\\"amount\\":100,\\"currency\\":\\"BYN\\"}) is not a valid Money object",
     },
     "property": "price",
     "target": CustomGuineaPig {
@@ -71,7 +71,7 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "IsMoney": "Provided object ({\\"amount\\":\\"Enough\\",\\"currency\\":\\"Gold\\"}) is too a valid Money object",
+      "IsMoney": "({\\"amount\\":\\"Enough\\",\\"currency\\":\\"Gold\\"}) is not a valid Money object",
     },
     "property": "price",
     "target": GuineaPig {
@@ -93,7 +93,7 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "IsMoney": "Provided object ({\\"amount\\":-2400,\\"currency\\":\\"EUR\\"}) is too a valid Money object",
+      "IsMoney": "({\\"amount\\":-2400,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
     },
     "property": "price",
     "target": GuineaPig {
