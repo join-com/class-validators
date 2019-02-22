@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  setupTestFrameworkScriptFile: 'jest-extended',
+  setupFilesAfterEnv: ['jest-extended'],
   testPathIgnorePatterns: ['/node_modules/'],
   watchPlugins: [
     'jest-watch-typeahead/filename',

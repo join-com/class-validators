@@ -1,69 +1,96 @@
 import { validate } from 'class-validator';
-import { IsMoney, IsMoneyValidator } from '../src';
+import { IsMoney } from '../src';
 
 describe('IsMoney validation', () => {
-  describe('Validator', () => {
-    it('accepts valid money object', () => {
-      const validator = new IsMoneyValidator();
-      expect(validator.validate({ amount: 100, currency: 'EUR' })).toBeTrue();
-    });
+  class GuineaPig {
+    @IsMoney({ max: 1200 })
+    public price: any;
+  }
 
-    it('rejects money object with missing amount', () => {
-      const validator = new IsMoneyValidator();
-      expect(validator.validate({ currency: 'EUR' })).toBeFalse();
-    });
+  class CustomGuineaPig {
+    @IsMoney({
+      allowNegative: true,
+      min: -1100,
+      currencies: ['EUR', 'USD', 'CHF'],
+    })
+    public price: any;
+  }
 
-    it('rejects money object with negative amount', () => {
-      const validator = new IsMoneyValidator();
-      expect(validator.validate({ amount: -12, currency: 'EUR' })).toBeFalse();
-    });
-
-    it('rejects money object with non-numeric amount', () => {
-      const validator = new IsMoneyValidator();
-      expect(
-        validator.validate({ amount: 'Plethora', currency: 'EUR' }),
-      ).toBeFalse();
-    });
-
-    it('rejects money object with missing currency', () => {
-      const validator = new IsMoneyValidator();
-      expect(validator.validate({ amount: 1701 })).toBeFalse();
-    });
-
-    it('rejects money object with invalid currency code', () => {
-      const validator = new IsMoneyValidator();
-      expect(validator.validate({ amount: 1701, currency: 'FOO' })).toBeFalse();
+  it('accepts valid class', () => {
+    const littlePiggy = new GuineaPig();
+    littlePiggy.price = {
+      amount: 42,
+      currency: 'CHF',
+    };
+    expect.assertions(1);
+    validate(littlePiggy).then(errors => {
+      expect(errors).toBeEmpty();
     });
   });
 
-  describe('Decorator', () => {
-    class GuineaPig {
-      @IsMoney()
-      public price: any;
-    }
-
-    it('accepts valid class', () => {
-      const littlePiggy = new GuineaPig();
-      littlePiggy.price = {
-        amount: 42,
-        currency: 'CHF',
-      };
-      expect.assertions(1);
-      validate(littlePiggy).then(errors => {
-        expect(errors).toBeEmpty();
-      });
+  it('rejects invalid class', () => {
+    const littlePiggy = new GuineaPig();
+    littlePiggy.price = {
+      amount: 'Enough',
+      currency: 'Gold',
+    };
+    expect.assertions(1);
+    validate(littlePiggy).then(errors => {
+      expect(errors).toMatchSnapshot();
     });
+  });
 
-    it('rejects invalid class', () => {
-      const littlePiggy = new GuineaPig();
-      littlePiggy.price = {
-        amount: 'Enough',
-        currency: 'Gold',
-      };
-      expect.assertions(1);
-      validate(littlePiggy).then(errors => {
-        expect(errors).toMatchSnapshot();
-      });
-    });
+  it('checks max', async () => {
+    const littlePiggy = new GuineaPig();
+    littlePiggy.price = {
+      amount: 2400,
+      currency: 'EUR',
+    };
+    const errors = await validate(littlePiggy);
+    expect(errors).toMatchSnapshot();
+  });
+
+  it('rejects negative by default', async () => {
+    const littlePiggy = new GuineaPig();
+    littlePiggy.price = {
+      amount: -2400,
+      currency: 'EUR',
+    };
+
+    const errors = await validate(littlePiggy);
+    expect(errors).toMatchSnapshot();
+  });
+
+  it('accepts negative amount when allowNegative is true', async () => {
+    const littlePiggy = new CustomGuineaPig();
+    littlePiggy.price = {
+      amount: -100,
+      currency: 'EUR',
+    };
+
+    const errors = await validate(littlePiggy);
+    expect(errors).toHaveLength(0);
+  });
+
+  it('checks min', async () => {
+    const littlePiggy = new CustomGuineaPig();
+    littlePiggy.price = {
+      amount: -2000,
+      currency: 'USD',
+    };
+
+    const errors = await validate(littlePiggy);
+    expect(errors).toMatchSnapshot();
+  });
+
+  it('rejects currency which is not in the custom list', async () => {
+    const littlePiggy = new CustomGuineaPig();
+    littlePiggy.price = {
+      amount: 100,
+      currency: 'BYN',
+    };
+
+    const errors = await validate(littlePiggy);
+    expect(errors).toMatchSnapshot();
   });
 });
