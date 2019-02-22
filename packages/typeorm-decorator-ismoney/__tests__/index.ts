@@ -16,6 +16,11 @@ describe('IsMoney validation', () => {
     public price: any;
   }
 
+  class DefaultGuineaPig {
+    @IsMoney()
+    public price: any;
+  }
+
   it('accepts valid class', () => {
     const littlePiggy = new GuineaPig();
     littlePiggy.price = {
@@ -91,6 +96,26 @@ describe('IsMoney validation', () => {
     };
 
     const errors = await validate(littlePiggy);
+    expect(errors).toMatchSnapshot();
+  });
+
+  it('rejects incorrect values on default settings', async () => {
+    const defaultPiggy = new DefaultGuineaPig();
+    defaultPiggy.price = {
+      amount: -100,
+      currency: 'EUR',
+    };
+    const errors = await validate(defaultPiggy);
+    expect(errors).toMatchSnapshot();
+  });
+
+  it('accept correct values on default settings', async () => {
+    const defaultPiggy = new DefaultGuineaPig();
+    defaultPiggy.price = {
+      amount: -100,
+      currency: 'EUR',
+    };
+    const errors = await validate(defaultPiggy);
     expect(errors).toMatchSnapshot();
   });
 });

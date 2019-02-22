@@ -27,13 +27,12 @@ interface IMoneyValidationOptions {
 export class IsMoneyValidator implements ValidatorConstraintInterface {
   public validate(money: IMoney, args: ValidationArguments) {
     const { amount, currency } = money;
-    const settingsOrDefault = args.constraints[0] || settingsDefault;
     const {
       allowNegative,
       min,
       max,
       currencies: customCurrencies,
-    } = Object.assign({}, settingsDefault, settingsOrDefault);
+    } = Object.assign({}, settingsDefault, args.constraints[0]);
     const isAmountCorrect =
       typeof amount === 'number' &&
       (allowNegative || amount >= 0) &&
@@ -53,7 +52,7 @@ export class IsMoneyValidator implements ValidatorConstraintInterface {
 }
 
 export function IsMoney(
-  settings: IMoneyValidationOptions,
+  settings?: IMoneyValidationOptions,
   validationOptions?: ValidationOptions,
 ) {
   return (object: object, propertyName: string) => {

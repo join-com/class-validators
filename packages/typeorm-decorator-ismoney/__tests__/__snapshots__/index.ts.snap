@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IsMoney validation accept correct values on default settings 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":-100,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": DefaultGuineaPig {
+      "price": Object {
+        "amount": -100,
+        "currency": "EUR",
+      },
+    },
+    "value": Object {
+      "amount": -100,
+      "currency": "EUR",
+    },
+  },
+]
+`;
+
 exports[`IsMoney validation checks max 1`] = `
 Array [
   ValidationError {
@@ -61,6 +83,28 @@ Array [
     "value": Object {
       "amount": 100,
       "currency": "BYN",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation rejects incorrect values on default settings 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":-100,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": DefaultGuineaPig {
+      "price": Object {
+        "amount": -100,
+        "currency": "EUR",
+      },
+    },
+    "value": Object {
+      "amount": -100,
+      "currency": "EUR",
     },
   },
 ]
