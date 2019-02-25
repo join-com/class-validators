@@ -1,0 +1,40 @@
+{
+  "name": "@join-com/class-validator-ismoney",
+  "version": "1.2.5",
+  "description": "@IsMoney decorator for class-validator",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "tslint -p .",
+    "prepublish": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/join-com/typeorm-class-validators.git"
+  },
+  "keywords": [
+    "is money",
+    "class-validator",
+    "money"
+  ],
+  "author": "JOIN team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/join-com/typeorm-class-validators/issues"
+  },
+  "homepage": "https://github.com/join-com/typeorm-class-validators#readme",
+  "dependencies": {
+    "class-validator": "^0.9.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.6",
+    "jest": "^24.1.0",
+    "jest-extended": "^0.11.1",
+    "jest-watch-typeahead": "^0.2.1",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3"
+  }
+}
