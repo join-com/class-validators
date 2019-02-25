@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IsMoney validation accept correct values on default settings 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":-100,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": DefaultGuineaPig {
+      "price": Object {
+        "amount": -100,
+        "currency": "EUR",
+      },
+    },
+    "value": Object {
+      "amount": -100,
+      "currency": "EUR",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation checks max 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":2400,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": GuineaPig {
+      "price": Object {
+        "amount": 2400,
+        "currency": "EUR",
+      },
+    },
+    "value": Object {
+      "amount": 2400,
+      "currency": "EUR",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation checks min 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":-2000,\\"currency\\":\\"USD\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": CustomGuineaPig {
+      "price": Object {
+        "amount": -2000,
+        "currency": "USD",
+      },
+    },
+    "value": Object {
+      "amount": -2000,
+      "currency": "USD",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation rejects correclty on undefined value 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "(undefined) is not a valid Money object",
+    },
+    "property": "price",
+    "target": GuineaPig {
+      "price": undefined,
+    },
+    "value": undefined,
+  },
+]
+`;
+
+exports[`IsMoney validation rejects currency which is not in the custom list 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":100,\\"currency\\":\\"BYN\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": CustomGuineaPig {
+      "price": Object {
+        "amount": 100,
+        "currency": "BYN",
+      },
+    },
+    "value": Object {
+      "amount": 100,
+      "currency": "BYN",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation rejects incorrect values on default settings 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":-100,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": DefaultGuineaPig {
+      "price": Object {
+        "amount": -100,
+        "currency": "EUR",
+      },
+    },
+    "value": Object {
+      "amount": -100,
+      "currency": "EUR",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation rejects invalid class 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":\\"Enough\\",\\"currency\\":\\"Gold\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": GuineaPig {
+      "price": Object {
+        "amount": "Enough",
+        "currency": "Gold",
+      },
+    },
+    "value": Object {
+      "amount": "Enough",
+      "currency": "Gold",
+    },
+  },
+]
+`;
+
+exports[`IsMoney validation rejects negative by default 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "IsMoney": "({\\"amount\\":-2400,\\"currency\\":\\"EUR\\"}) is not a valid Money object",
+    },
+    "property": "price",
+    "target": GuineaPig {
+      "price": Object {
+        "amount": -2400,
+        "currency": "EUR",
+      },
+    },
+    "value": Object {
+      "amount": -2400,
+      "currency": "EUR",
+    },
+  },
+]
+`;
