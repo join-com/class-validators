@@ -1,6 +1,6 @@
 {
   "name": "@join-com/typeorm-class-validator-is-uniq",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "uniq validator for typeorm and class-validator",
   "main": "lib/index.js",
   "scripts": {
