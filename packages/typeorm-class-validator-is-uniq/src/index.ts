@@ -31,7 +31,7 @@ export class IsUniqConstraint implements ValidatorConstraintInterface {
     if (primaryColumnNames.length) {
       conditions = primaryColumnNames.reduce((acc, name) => {
         const pkValue = (args.object as any)[name];
-        return pkValue ? { acc, [name]: Not(pkValue) } : acc;
+        return pkValue ? { ...acc, [name]: Not(pkValue) } : acc;
       }, conditions);
     }
     return conditions;
