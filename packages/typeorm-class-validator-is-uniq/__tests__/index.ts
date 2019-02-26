@@ -35,11 +35,14 @@ beforeAll(async () => {
 
 afterAll(() => connection.close());
 
-const EMAIL = 'john@example.com';
+const email = 'john@example.com'
 
 beforeEach(async () => {
-  const entity = repo.create({ email: EMAIL });
-  await repo.save(entity);
+  const entities = [
+    repo.create({ email: 'joe@example.com' }),
+    repo.create({ email })
+  ]
+  await repo.save(entities);
 });
 
 afterEach(async () => {
@@ -48,7 +51,7 @@ afterEach(async () => {
 
 describe('IsUniq', () => {
   it('raises an error when new entity', async () => {
-    const entity = repo.create({ email: EMAIL });
+    const entity = repo.create({ email });
     expect(await validate(entity)).toMatchInlineSnapshot(`
 Array [
   ValidationError {
@@ -67,7 +70,7 @@ Array [
   });
 
   it('raises no error when new entity', async () => {
-    const entity = repo.findOne({ email: EMAIL });
+    const entity = await repo.findOne({ email });
     const errors = await validate(entity);
     expect(errors).toHaveLength(0);
   });
