@@ -41,7 +41,7 @@ export class IsUniqConstraint implements ValidatorConstraintInterface {
 export const IsUniq = (validationOptions?: ValidationOptions) => {
   return (object: object, propertyName: string) => {
     const opts: ValidationOptions = {
-      message: '$target with $value already exists',
+      message: '$target with $property: $value already exists',
       ...validationOptions,
     };
     registerDecorator({
