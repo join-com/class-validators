@@ -1,6 +1,6 @@
 {
   "name": "@join-com/typeorm-class-validator-is-uniq",
-  "version": "1.2.9",
+  "version": "1.2.10-alpha.0",
   "description": "uniq validator for typeorm and class-validator",
   "main": "lib/index.js",
   "scripts": {
@@ -30,14 +30,14 @@
   "devDependencies": {
     "@types/jest": "^24.0.9",
     "@types/node": "^11.9.5",
+    "class-validator": "^0.9.1",
     "jest": "^24.1.0",
     "jest-extended": "^0.11.1",
     "jest-watch-typeahead": "^0.2.1",
     "sqlite3": "^4.0.6",
     "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333",
-    "class-validator": "^0.9.1",
-    "typeorm": "^0.2.9"
+    "typeorm": "^0.2.9",
+    "typescript": "^3.3.3333"
   },
   "peerDependencies": {
     "class-validator": "^0.9.1",
