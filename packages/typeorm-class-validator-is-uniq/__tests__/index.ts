@@ -48,12 +48,12 @@ describe('IsUniq', () => {
 
     beforeEach(async () => {
       const entities = [
-        repo.create({ email }),
         repo.create({
           email: 'joe@example.com',
           department: 'sales',
           company: 'JOIN Solutions AG',
         }),
+        repo.create({ email }),
       ];
       await repo.save(entities);
     });

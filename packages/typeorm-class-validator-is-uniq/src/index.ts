@@ -52,6 +52,7 @@ export class IsUniqConstraint implements ValidatorConstraintInterface {
     const primaryColumnNames = repository.metadata.primaryColumns.map(
       ({ propertyName }) => propertyName,
     );
+
     if (!primaryColumnNames.length) {
       return {};
     }
