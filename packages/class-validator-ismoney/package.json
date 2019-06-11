@@ -1,6 +1,6 @@
 {
   "name": "@join-com/class-validator-ismoney",
-  "version": "1.2.7",
+  "version": "1.2.10",
   "description": "@IsMoney decorator for class-validator",
   "main": "lib/index.js",
   "scripts": {
@@ -30,8 +30,8 @@
     "class-validator": "^0.9.1"
   },
   "devDependencies": {
-    "class-validator": "^0.9.1",
     "@types/jest": "^24.0.6",
+    "class-validator": "^0.9.1",
     "jest": "^24.1.0",
     "jest-extended": "^0.11.1",
     "jest-watch-typeahead": "^0.3.1",
