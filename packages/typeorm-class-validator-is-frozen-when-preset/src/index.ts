@@ -28,9 +28,15 @@ export class IsFrozenWhenPresetConstraint
   }
 }
 
-export const IsFrozenWhenPreset = () => {
+/**
+ * Checks if a field can be set for a first time
+ *
+ * @param validationOptions `class-validator` options
+ */
+export const IsFrozenWhenPreset = (validationOptions?: ValidationOptions) => {
   const options: ValidationOptions = {
     message: 'Value is not allowed to be changed',
+    ...validationOptions,
   };
 
   return (object: object, propertyName: string) => {

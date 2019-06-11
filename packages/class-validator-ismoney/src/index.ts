@@ -54,6 +54,13 @@ export class IsMoneyValidator implements ValidatorConstraintInterface {
   }
 }
 
+/**
+ * Checks if a value is a Money type.
+ *
+ * @param settings Validation settings
+ * @param validationOptions class-validator options
+ */
+
 export function IsMoney(
   settings?: IMoneyValidationOptions,
   validationOptions?: ValidationOptions,
