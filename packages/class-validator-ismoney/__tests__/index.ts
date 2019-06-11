@@ -1,3 +1,5 @@
+import 'jest-extended';
+
 import { validate } from 'class-validator';
 import { IsMoney } from '../src';
 

@@ -12,7 +12,7 @@ export type ScopedValidationOptions = ValidationOptions & { scope?: string[] };
 @ValidatorConstraint({ async: true, name: 'IsUniq' })
 export class IsUniqConstraint implements ValidatorConstraintInterface {
   public async validate(value: any, args: ValidationArguments) {
-    const repository = getRepository(args.targetName);
+    const repository = getRepository<any>(args.targetName);
     const entity = await repository.findOne({
       where: this.buildConditions(value, args, repository),
     });

@@ -21,7 +21,7 @@ export class IsFrozenWhenPresetConstraint
     }
 
     const { targetName, property } = args;
-    const repository = getRepository(targetName);
+    const repository = getRepository<any>(targetName);
     const entity: IObject | undefined = await repository.findOne(object.id);
 
     return !entity || !entity[property] || entity[property] === value;
