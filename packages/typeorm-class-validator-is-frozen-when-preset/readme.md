@@ -1,5 +1,7 @@
 # Is frozen when preset validator for `class-validator` and `typeorm`
 
+Custom validator for [class-validator](https://github.com/typestack/class-validator) and [typeorm](https://typeorm.io)
+
 It validates that a field can not be changed once it was set before.
 
 ## Installation

@@ -18,6 +18,7 @@
   "keywords": [
     "uniq",
     "is uniq",
+    "validation",
     "class-validator",
     "typeorm"
   ],

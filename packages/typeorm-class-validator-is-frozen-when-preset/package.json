@@ -16,6 +16,7 @@
     "url": "https://github.com/join-com/typeorm-class-validators"
   },
   "keywords": [
+    "validation",
     "preset",
     "class-validator",
     "typeorm"
