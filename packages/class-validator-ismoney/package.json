@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/join-com/typeorm-class-validators.git"
+    "url": "git+https://github.com/join-com/class-validators.git"
   },
   "keywords": [
     "is money",
@@ -23,9 +23,9 @@
   "author": "JOIN team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/join-com/typeorm-class-validators/issues"
+    "url": "https://github.com/join-com/class-validators/issues"
   },
-  "homepage": "https://github.com/join-com/typeorm-class-validators#readme",
+  "homepage": "https://github.com/join-com/class-validators#readme",
   "dependencies": {
     "class-validator": "^0.9.1"
   },
