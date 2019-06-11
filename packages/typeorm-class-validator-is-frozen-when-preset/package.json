@@ -1,6 +1,6 @@
 {
   "name": "@join-com/typeorm-class-validator-is-frozen-when-preset",
-  "version": "1.2.7",
+  "version": "1.2.10",
   "description": "validator for typeorm and class-validator to check that value is never reassigned",
   "main": "lib/index.js",
   "scripts": {
@@ -13,9 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/join-com/typeorm-class-validators"
+    "url": "https://github.com/join-com/class-validators"
   },
   "keywords": [
+    "validation",
     "preset",
     "class-validator",
     "typeorm"
@@ -23,22 +24,24 @@
   "author": "JOIN team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/join-com/typeorm-class-validators/issues"
+    "url": "https://github.com/join-com/class-validators/issues"
   },
-  "homepage": "https://github.com/join-com/typeorm-class-validators#readme",
+  "homepage": "https://github.com/join-com/class-validators#readme",
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.12",
-    "jest": "^23.6.0",
-    "jest-extended": "^0.11.0",
-    "jest-watch-typeahead": "^0.2.0",
-    "sqlite3": "^4.0.4",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.2.1"
-  },
-  "dependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.7",
     "class-validator": "^0.9.1",
-    "typeorm": "^0.2.9"
+    "jest": "^24.8.0",
+    "jest-extended": "^0.11.1",
+    "jest-watch-typeahead": "^0.3.1",
+    "sqlite3": "^4.0.8",
+    "ts-jest": "^24.0.2",
+    "typeorm": "^0.2.18",
+    "typescript": "^3.5.1"
+  },
+  "peerDependencies": {
+    "class-validator": "^0.9.1",
+    "typeorm": "^0.2.18"
   },
   "gitHead": "7607d18ec1d23222bf8c19dbcb7e860f352affa4"
 }

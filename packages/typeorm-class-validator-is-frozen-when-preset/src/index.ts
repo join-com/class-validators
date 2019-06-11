@@ -21,16 +21,22 @@ export class IsFrozenWhenPresetConstraint
     }
 
     const { targetName, property } = args;
-    const repository = getRepository(targetName);
+    const repository = getRepository<any>(targetName);
     const entity: IObject | undefined = await repository.findOne(object.id);
 
     return !entity || !entity[property] || entity[property] === value;
   }
 }
 
-export const IsFrozenWhenPreset = () => {
+/**
+ * Checks if a field can be set for a first time
+ *
+ * @param validationOptions `class-validator` options
+ */
+export const IsFrozenWhenPreset = (validationOptions?: ValidationOptions) => {
   const options: ValidationOptions = {
     message: 'Value is not allowed to be changed',
+    ...validationOptions,
   };
 
   return (object: object, propertyName: string) => {

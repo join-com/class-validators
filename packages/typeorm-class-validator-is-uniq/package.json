@@ -1,6 +1,6 @@
 {
   "name": "@join-com/typeorm-class-validator-is-uniq",
-  "version": "1.2.10-alpha.0",
+  "version": "1.2.10",
   "description": "uniq validator for typeorm and class-validator",
   "main": "lib/index.js",
   "scripts": {
@@ -13,34 +13,35 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/join-com/typeorm-class-validators"
+    "url": "https://github.com/join-com/class-validators"
   },
   "keywords": [
     "uniq",
     "is uniq",
+    "validation",
     "class-validator",
     "typeorm"
   ],
   "author": "JOIN team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/join-com/typeorm-class-validators/issues"
+    "url": "https://github.com/join-com/class-validators/issues"
   },
-  "homepage": "https://github.com/join-com/typeorm-class-validators#readme",
+  "homepage": "https://github.com/join-com/class-validators#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.9",
-    "@types/node": "^11.9.5",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.7",
     "class-validator": "^0.9.1",
-    "jest": "^24.1.0",
+    "jest": "^24.8.0",
     "jest-extended": "^0.11.1",
-    "jest-watch-typeahead": "^0.2.1",
-    "sqlite3": "^4.0.6",
-    "ts-jest": "^24.0.0",
-    "typeorm": "^0.2.9",
-    "typescript": "^3.3.3333"
+    "jest-watch-typeahead": "^0.3.1",
+    "sqlite3": "^4.0.8",
+    "ts-jest": "^24.0.2",
+    "typeorm": "^0.2.18",
+    "typescript": "^3.5.1"
   },
   "peerDependencies": {
     "class-validator": "^0.9.1",
-    "typeorm": "^0.2.9"
+    "typeorm": "^0.2.18"
   }
 }

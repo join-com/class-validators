@@ -12,7 +12,7 @@ export type ScopedValidationOptions = ValidationOptions & { scope?: string[] };
 @ValidatorConstraint({ async: true, name: 'IsUniq' })
 export class IsUniqConstraint implements ValidatorConstraintInterface {
   public async validate(value: any, args: ValidationArguments) {
-    const repository = getRepository(args.targetName);
+    const repository = getRepository<any>(args.targetName);
     const entity = await repository.findOne({
       where: this.buildConditions(value, args, repository),
     });
@@ -63,6 +63,11 @@ export class IsUniqConstraint implements ValidatorConstraintInterface {
   }
 }
 
+/**
+ * Checks if a value is uniq across all records in a database or inside a scope.
+ *
+ * @param validationOptions accept `scope` options and all `class-validator` options
+ */
 export const IsUniq = (validationOptions?: ScopedValidationOptions) => {
   return (object: object, propertyName: string) => {
     const scope = validationOptions && validationOptions.scope;
