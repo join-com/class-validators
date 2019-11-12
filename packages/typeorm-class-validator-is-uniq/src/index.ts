@@ -1,3 +1,5 @@
+import { getRepository, Not, Repository } from 'typeorm';
+
 import {
   registerDecorator,
   ValidationArguments,
@@ -5,7 +7,6 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { getRepository, Not, Repository } from 'typeorm';
 
 export type ScopedValidationOptions = ValidationOptions & { scope?: string[] };
 
@@ -13,6 +14,7 @@ export type ScopedValidationOptions = ValidationOptions & { scope?: string[] };
 export class IsUniqConstraint implements ValidatorConstraintInterface {
   public async validate(value: any, args: ValidationArguments) {
     const repository = getRepository<any>(args.targetName);
+    if (args.value == null) return true;
     const entity = await repository.findOne({
       where: this.buildConditions(value, args, repository),
     });
