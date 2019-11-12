@@ -3,6 +3,7 @@
 Custom validator for [class-validator](https://github.com/typestack/class-validator) and [typeorm](https://typeorm.io)
 
 It validates uniqueness of any value across all records in a database. The validation can be narrowed down to a scope based on another column.
+It doesn't consider nulls as unique values to be compatible with SQL specification
 
 ## Installation
 

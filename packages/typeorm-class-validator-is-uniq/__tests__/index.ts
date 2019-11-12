@@ -1,4 +1,3 @@
-import { validate } from 'class-validator';
 import {
   Column,
   Connection,
@@ -8,6 +7,9 @@ import {
   PrimaryGeneratedColumn,
   Repository,
 } from 'typeorm';
+
+import { validate } from 'class-validator';
+
 import { IsUniq } from '../src/index';
 
 @Entity()
@@ -88,6 +90,29 @@ Array [
     });
   });
 
+  describe('handle nulls', () => {
+    const email = 'joe@example.com';
+    beforeAll(async () => {
+      const entities = [
+        repo.create({
+          email,
+          department: null,
+          company: 'JOIN Solutions AG',
+        }),
+        repo.create({
+          email: 'doe@example.com',
+          department: null,
+          company: 'ACME',
+        }),
+      ];
+      await repo.save(entities);
+    });
+    it('never consider null as unique value ', async () => {
+      const entity = await repo.findOneOrFail({ email });
+      const errors = await validate(entity);
+      expect(errors).toHaveLength(0);
+    });
+  });
   describe('scoped validation', () => {
     const email = 'john@example.com';
 
