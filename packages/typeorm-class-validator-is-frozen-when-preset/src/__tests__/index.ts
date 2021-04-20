@@ -1,6 +1,3 @@
-// eslint-disable-next-line node/no-missing-import
-import 'source-map-support/register'
-
 import {
   Column,
   Connection,
