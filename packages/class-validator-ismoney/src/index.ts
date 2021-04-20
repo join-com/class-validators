@@ -1,56 +1,60 @@
 import {
-  registerDecorator,
   ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
-} from 'class-validator';
+  registerDecorator,
+} from 'class-validator'
 
-import codes from './codes';
-import { IMoney } from './Money';
+import { IMoney } from './Money'
+import { codes } from './codes'
 
 const settingsDefault = {
   allowNegative: false,
   min: Number.MIN_SAFE_INTEGER,
   max: Number.MAX_SAFE_INTEGER,
   currencies: undefined,
-};
+}
 
 interface IMoneyValidationOptions {
-  allowNegative?: boolean;
-  min?: number;
-  max?: number;
-  currencies?: string[];
+  allowNegative?: boolean
+  min?: number
+  max?: number
+  currencies?: string[]
 }
 
 @ValidatorConstraint({ name: 'IsMoney', async: false })
 export class IsMoneyValidator implements ValidatorConstraintInterface {
-  public validate(money: IMoney, args: ValidationArguments) {
+  // TODO: Refine `args` type
+  public validate(money: IMoney, args: ValidationArguments): boolean {
     if (!money) {
-      return false;
+      return false
     }
-    const { amount, currency } = money;
-    const {
-      allowNegative,
-      min,
-      max,
-      currencies: customCurrencies,
-    } = Object.assign({}, settingsDefault, args.constraints[0]);
+    const { amount, currency } = money
+
+    const { allowNegative, min, max, currencies: customCurrencies } = {
+      ...settingsDefault,
+      ...(args.constraints[0] as IMoneyValidationOptions),
+    }
+
     const isAmountCorrect =
       typeof amount === 'number' &&
       (allowNegative || amount >= 0) &&
       amount <= max &&
-      amount >= min;
+      amount >= min
+
     const isCurrencyCorrect =
-      typeof currency === 'string' && codes.includes(currency);
+      typeof currency === 'string' && codes.includes(currency)
+
     const isCustomCurrencyCorrect =
       !customCurrencies ||
-      (customCurrencies.length && customCurrencies.includes(currency));
-    return isAmountCorrect && isCurrencyCorrect && isCustomCurrencyCorrect;
+      (customCurrencies.length > 0 && customCurrencies.includes(currency))
+
+    return isAmountCorrect && isCurrencyCorrect && isCustomCurrencyCorrect
   }
 
-  public defaultMessage(args: ValidationArguments) {
-    return `(${JSON.stringify(args.value)}) is not a valid Money object`;
+  public defaultMessage(args: ValidationArguments): string {
+    return `(${JSON.stringify(args.value)}) is not a valid Money object`
   }
 }
 
@@ -65,13 +69,15 @@ export function IsMoney(
   settings?: IMoneyValidationOptions,
   validationOptions?: ValidationOptions,
 ) {
-  return (object: object, propertyName: string) => {
+  // TODO: refine `object` type
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  return (object: object, propertyName: string): void => {
     registerDecorator({
       target: object.constructor,
       propertyName,
       options: validationOptions,
       constraints: [settings],
       validator: IsMoneyValidator,
-    });
-  };
+    })
+  }
 }

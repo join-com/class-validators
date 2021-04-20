@@ -1,4 +1,4 @@
-const codes = [
+export const codes = [
   'AED',
   'AFN',
   'ALL',
@@ -176,6 +176,4 @@ const codes = [
   'YER',
   'ZAR',
   'ZMW',
-];
-
-export default codes;
+]

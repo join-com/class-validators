@@ -1,67 +1,78 @@
-import { getRepository, Not, Repository } from 'typeorm';
+import { Not, ObjectLiteral, Repository, getRepository } from 'typeorm'
 
 import {
-  registerDecorator,
   ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
-} from 'class-validator';
+  registerDecorator,
+} from 'class-validator'
 
-export type ScopedValidationOptions = ValidationOptions & { scope?: string[] };
+export type ScopedValidationOptions = ValidationOptions & { scope?: string[] }
 
 @ValidatorConstraint({ async: true, name: 'IsUniq' })
 export class IsUniqConstraint implements ValidatorConstraintInterface {
-  public async validate(value: any, args: ValidationArguments) {
-    const repository = getRepository<any>(args.targetName);
-    if (args.value == null) return true;
+  public async validate(
+    value: unknown,
+    args: ValidationArguments,
+  ): Promise<boolean> {
+    if (args.value == null) {
+      return true
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    const repository = getRepository<ObjectLiteral>(args.targetName)
     const entity = await repository.findOne({
       where: this.buildConditions(value, args, repository),
-    });
+    })
 
-    return !entity;
+    return !entity
   }
 
   private buildConditions(
-    value: any,
+    value: unknown,
     args: ValidationArguments,
-    repository: Repository<{}>,
+    repository: Repository<ObjectLiteral>,
   ) {
     return {
       [args.property]: value,
       ...this.buildScopeConditions(args.object, args.constraints),
       ...this.buildPrimaryColumnConditions(args.object, repository),
-    };
+    }
   }
 
-  private buildScopeConditions(object: any, constraints?: string[]) {
+  private buildScopeConditions(object: ObjectLiteral, constraints?: string[]) {
     if (!constraints || !constraints.length) {
-      return {};
+      return {}
     }
     return constraints.reduce(
       (acc, key) => ({
         ...acc,
+        // TODO: Refine types here
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         [key]: object[key],
       }),
       {},
-    );
+    )
   }
 
   private buildPrimaryColumnConditions(
-    object: any,
-    repository: Repository<{}>,
+    object: ObjectLiteral,
+    repository: Repository<ObjectLiteral>,
   ) {
     const primaryColumnNames = repository.metadata.primaryColumns.map(
       ({ propertyName }) => propertyName,
-    );
+    )
 
     if (!primaryColumnNames.length) {
-      return {};
+      return {}
     }
     return primaryColumnNames.reduce((acc, name) => {
-      const pkValue = object[name];
-      return pkValue ? { ...acc, [name]: Not(pkValue) } : acc;
-    }, {});
+      // TODO: Refine types here
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const pkValue = object[name]
+      return pkValue ? { ...acc, [name]: Not(pkValue) } : acc
+    }, {})
   }
 }
 
@@ -71,8 +82,9 @@ export class IsUniqConstraint implements ValidatorConstraintInterface {
  * @param validationOptions accept `scope` options and all `class-validator` options
  */
 export const IsUniq = (validationOptions?: ScopedValidationOptions) => {
-  return (object: object, propertyName: string) => {
-    const scope = validationOptions && validationOptions.scope;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  return (object: object, propertyName: string): void => {
+    const scope = validationOptions && validationOptions.scope
     const opts: ScopedValidationOptions = {
       message: scope
         ? `$target with $property '$value' already exists in scope: ${scope.join(
@@ -80,13 +92,13 @@ export const IsUniq = (validationOptions?: ScopedValidationOptions) => {
           )}`
         : "$target with $property '$value' already exists",
       ...validationOptions,
-    };
+    }
     registerDecorator({
       target: object.constructor,
       propertyName,
       options: opts,
       constraints: scope || [],
       validator: IsUniqConstraint,
-    });
-  };
-};
+    })
+  }
+}

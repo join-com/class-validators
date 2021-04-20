@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# The repository is small enough to make this viable, it's better to lint
+# everything, not just what's going to be committed.
+yarn lint
