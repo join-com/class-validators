@@ -9,7 +9,8 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "lint": "yarn workspaces run lint",
-    "makepretty": "yarn workspaces run makepretty"
+    "makepretty": "yarn workspaces run makepretty",
+    "test": "yarn workspaces run test"
   },
   "lint-staged": {
     "*.{js,ts,md}": [
