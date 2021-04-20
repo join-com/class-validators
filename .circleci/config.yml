@@ -1,0 +1,35 @@
+version: 2.1
+
+docker-auth: &docker-auth
+  auth:
+    username: ${DOCKER_LOGIN}
+    password: ${DOCKER_PASSWORD}
+
+commands:
+  test:
+    description: Compile & test protoc-gen-ts
+    steps:
+      - checkout
+      - run:
+          name: Install test dependencies
+          command: yarn
+      - run:
+          name: Lint code
+          command: yarn lint
+      - run:
+          name: Test
+          command: yarn test
+
+jobs:
+  build_and_test:
+    docker:
+      - image: cimg/node:14.16.0
+        <<: *docker-auth
+    steps:
+      # TODO: Install protoc & our protoc-gen-ts tool for more sofisticated tests
+      - test
+
+workflows:
+  all:
+    jobs:
+      - build_and_test
